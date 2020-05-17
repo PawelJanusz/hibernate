@@ -27,10 +27,15 @@ import javax.persistence.*;
         // POJO plain old java object
          //   - pola muszą mieć gettery i settery
         //    - pusty konstruktor
+
+        //@Column (name = "first_name")
         private String firstName;
         private String lastName;
+
         private double height;
         private int age;
+
+        // @Column(columnDefinition = "TINYINT default 0")
         private boolean alive; // nie isAlive
 
         @Enumerated(value = EnumType.STRING)
