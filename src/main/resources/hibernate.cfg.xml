@@ -13,7 +13,7 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <!-- powyższa linia służy do wskazania hibernatowi  sterownika bazy danych-->
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.password">hybrydy1007</property>
         <!--DB schema will be updated if needed -->
         <!--Hibernate model to data definition language-->
         <!--create - jeĹ›li ustawiony czyĹ›ci bazÄ™ danych przed uruchomieniem i od nowa tworzy tabele-->
@@ -25,6 +25,6 @@
         <property name="show_sql">true</property>
 
         <!--dopisnaie klas obsługiwanych przez hibernate-->
-        <mapping class=" com.sda.javawro27.hibernate.model.Student"/>
+        <mapping class="com.sda.javawro27.hibernate.model.Student"/>
     </session-factory>
 </hibernate-configuration>
