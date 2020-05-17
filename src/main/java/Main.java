@@ -2,6 +2,7 @@ import com.sda.javawro27.hibernate.StudentDao;
 import com.sda.javawro27.hibernate.model.Behaviour;
 import com.sda.javawro27.hibernate.model.Student;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,11 @@ public class Main {
             }else if(komenda.equalsIgnoreCase("list")){
                 listStudents(dao);
             }else if(komenda.equalsIgnoreCase("delete")){
+                deleteStudent(dao, scanner);
             }else if(komenda.equalsIgnoreCase("update")){
+                updateStudent(dao, scanner);
+            }else if(komenda.equalsIgnoreCase("findAll")){
+
             }
         }while (!komenda.equalsIgnoreCase("quit"));
     }
@@ -30,6 +35,47 @@ public class Main {
         System.out.println("Lista studentów");
         dao.getAll().stream().forEach(System.out::println);
     }
+    private static void updateStudent(StudentDao dao, Scanner scanner) {
+        System.out.println("Podaj parametry: IMIE NAZWISKO WZROST WIEK ŻYWY ZACHOWANIE");
+        String linia = scanner.nextLine();
+        String[] slowa = linia.split(" ");
+
+        System.out.println("Podaj parametry: Identyfikator");
+        Long id = Long.valueOf(scanner.nextLine());
+
+        Optional<Student> studentOptional = dao.findById(id);   // szukamy studenta
+        if (studentOptional.isPresent()) {                       // jeśli uda się go odnaleźć
+            Student student = studentOptional.get();            // wyciągamy studenta z Optional (Box, opakowanie)
+            System.out.println("Próbujesz edytować rekord: " + student);
+
+            student = Student.builder()
+                    .firstName(slowa[0])
+                    .lastName(slowa[1])
+                    .height(Double.parseDouble(slowa[2]))
+                    .age(Integer.parseInt(slowa[3]))
+                    .alive(Boolean.parseBoolean(slowa[4]))
+                    .id(id)
+                    .behaviour(Behaviour.valueOf(slowa[5].toUpperCase()))
+                    .build();
+
+            dao.saveOrUpdate(student);
+        } else {
+            System.err.println("Error, student z takim id nie istnieje.");
+        }
+    }
+
+
+    private static void deleteStudent(StudentDao dao, Scanner scanner) {
+        // nie da się usunąć rekordu po id (bezpośrednio z sesji)
+        System.out.println("Podaj parametry: Identyfikator");
+        Long id = Long.valueOf(scanner.nextLine());
+    Optional<Student> studentOptional = dao.findById(id);   // szukamy studenta
+        if(studentOptional.isPresent()) {                       // jeśli uda się go odnaleźć
+        Student student = studentOptional.get();            // wyciągamy studenta z Optional (Box, opakowanie)
+        dao.delete(student);                                // przekazujemy do usunięcia
+    }
+}
+
     private static void addStudents(StudentDao dao, Scanner scanner) {
         System.out.println("Podaj parametry: IMIE NAZWISKO WZROST WIEK ŻYWY ZACHOWANIE");
         String linia = scanner.nextLine();
