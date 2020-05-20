@@ -16,7 +16,7 @@ public class Main {
         String komenda;
         do{
             // https://pl.spoj.com/
-            System.out.println("Podaj komendę [add/list/delete/update/quit]");
+            System.out.println("Podaj komendę [add/list/delete/update/byAge/bybeh/quit]");
             komenda = scanner.nextLine();
 
             if(komenda.equalsIgnoreCase("add")){
@@ -31,6 +31,8 @@ public class Main {
                 findByAge(dao, scanner);
             }else if (komenda.equalsIgnoreCase("bybeh")){
                 findByBehaviourAndAlive(dao, scanner);
+            }else if (komenda.equalsIgnoreCase("getAll")){
+              dao.getAll();
             }
         }while (!komenda.equalsIgnoreCase("quit"));
     }

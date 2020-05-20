@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 
-@Data
+    @Data
     @Entity // jest to klasa bazodanowa
     @Builder
     @NoArgsConstructor
@@ -18,7 +18,7 @@ import javax.persistence.*;
     // GRADE 3 4 6 9
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         // identity - identyfikator pochodzi z bazy danych
         // sequence - licznik identyfikatorów pochodzi z hibernate, wszystkie klasy posiadają wspólny licznik
         // table - licznik identyfikatorów pochodzi z hibernate i posiada oddzielny dla każdej tabeli

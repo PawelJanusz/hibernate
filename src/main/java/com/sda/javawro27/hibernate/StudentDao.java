@@ -22,6 +22,7 @@ public class StudentDao {
     public void saveOrUpdate(Student student) {
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         Transaction transaction = null;
+
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             // instrukcja która służy do zapisywania w bazie
@@ -37,10 +38,12 @@ public class StudentDao {
         List<Student> list = new ArrayList<>();
 
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+
         try (Session session = sessionFactory.openSession()) {
             // h q l = hibernate query language
             Query<Student> studentQuery = session.createQuery("SELECT a from Student a", Student.class);
             list.addAll(studentQuery.getResultList());
+
         } catch (HibernateException he) {
             he.printStackTrace();
         }
@@ -49,6 +52,7 @@ public class StudentDao {
 
     public Optional<Student> findById(Long id){
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+
         try (Session session = sessionFactory.openSession()) {
             // istnieje prawdopodobieństwo, że rekord nie zostanie odnaleziony
             return Optional.ofNullable(session.get(Student.class, id));
@@ -61,12 +65,13 @@ public class StudentDao {
     public void delete(Student student){
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         Transaction transaction = null;
+
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             // instrukcja która służy do usuwania w bazie
             session.delete(student);
-
             transaction.commit();
+
         } catch (HibernateException he) {
             if (transaction != null) {
                 transaction.rollback();
@@ -74,6 +79,7 @@ public class StudentDao {
         }
     }
 
+    // inna opcja
     // ##############################################################################################
     // ##############################################################################################
     // ##############################################################################################
