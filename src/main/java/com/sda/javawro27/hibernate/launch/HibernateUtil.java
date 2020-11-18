@@ -1,4 +1,4 @@
-package com.sda.javawro27.hibernate;
+package com.sda.javawro27.hibernate.launch;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -20,7 +20,7 @@ public class HibernateUtil {
             ourSessionFactory = configuration.buildSessionFactory();
 
         } catch (HibernateException he){
-            System.out.println(he.getMessage());
+            System.err.println(he.getMessage());
 //            System.exit(376); // liczba która jest kodem błedu - jeśli zobaczymy liczbę znaczy że jest to bład hibernate
             throw he;
         }

@@ -1,3 +1,7 @@
+Run instructions
+Please copy contents below to your:
+/src/main/recources/hibernate.cfg.xml
+
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD//EN"
@@ -21,12 +25,15 @@
         <!--create-drop - uruchom connector, stwĂłrz tabele i kolumny, a po zakoĹ„czeniu aplikacji dropuj wszystkiego -->
         <!--validate - weryfikuje poprawnoĹ›Ä‡ bazy -->
         <!--ustawienie definiuje czy hibernate ma sam stworzyć TABELE-->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
-
+        
         <!--dopisnaie klas obsługiwanych przez hibernate-->
-        <mapping class="com.sda.javawro27.hibernate.model.Student"/>
-        <mapping class="com.sda.javawro27.hibernate.model.Grade"/>
-        <mapping class="com.sda.javawro27.hibernate.model.Teacher"/>
-    </session-factory>
+<mapping class="com.sda.javawro27.hibernate.model.Student"/>
+<mapping class="com.sda.javawro27.hibernate.model.Grade"/>
+<mapping class="com.sda.javawro27.hibernate.model.Teacher"/>
+      
+     
+
+ </session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-.ide/
+.idea/
 target/
 *.iml
 /src/main/recources/hibernate.cfg.xml

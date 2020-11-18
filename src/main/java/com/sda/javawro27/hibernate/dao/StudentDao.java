@@ -1,7 +1,9 @@
-package com.sda.javawro27.hibernate;
+package com.sda.javawro27.hibernate.dao;
 
 
+import com.sda.javawro27.hibernate.launch.HibernateUtil;
 import com.sda.javawro27.hibernate.model.Behaviour;
+import com.sda.javawro27.hibernate.model.LastNameSearchable;
 import com.sda.javawro27.hibernate.model.Student;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -17,23 +19,12 @@ import java.util.List;
 import java.util.Optional;
 
 // umożliwa wykonywanie operacji  CRUD na modelu Student
+//            GradeDao
+//            GenericDao
+
 public class StudentDao {
+//metoda zamieniona na generyczną w klasie EntityDao
 
-    public void saveOrUpdate(Student student) {
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-        Transaction transaction = null;
-
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-            // instrukcja która służy do zapisywania w bazie
-            session.saveOrUpdate(student);
-            transaction.commit();
-        } catch (HibernateException he) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-    }
     public List<Student> getAll(){
         List<Student> list = new ArrayList<>();
 
@@ -49,6 +40,28 @@ public class StudentDao {
         }
         return list;
     }
+//
+//    public void saveOrUpdate(Student student) {
+//        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+//        //transakcja musi się wykonać w całości
+//        Transaction transaction = null;
+//
+//        try (Session session = sessionFactory.openSession()) {
+//            // rozpoczecie transakcji
+//            transaction = session.beginTransaction();
+//
+//            // instrukcja która służy do zapisywania w bazie
+//            session.saveOrUpdate(student);
+//
+//            // zatwierdzenie transakcji
+//            transaction.commit();
+//        } catch (HibernateException he) {
+//            if (transaction != null) {
+//                transaction.rollback(); // cofnięcie transakcji, jesli coś pójdzie nie tak
+//            }
+//        }
+//    }
+
 
     public Optional<Student> findById(Long id){
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
@@ -68,6 +81,7 @@ public class StudentDao {
 
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
+
             // instrukcja która służy do usuwania w bazie
             session.delete(student);
             transaction.commit();
@@ -86,36 +100,9 @@ public class StudentDao {
     // ##############################################################################################
     // ##############################################################################################
 
-    public List<Student> findAll(){
-        List<Student> list = new ArrayList<>();
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
 
-        try (Session session = sessionFactory.openSession()) {
-            // narzędzie do tworzenia zapytań i kreowania klauzuli 'where'
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-
-            // obiekt reprezentujący zapytanie
-            CriteriaQuery<Student> criteriaQuery = cb.createQuery(Student.class);
-
-            // obiekt reprezentujący tabelę bazodanową.
-            // do jakiej tabeli kierujemy nasze zapytanie?
-            Root<Student> rootTable = criteriaQuery.from(Student.class);
-
-            // wykonanie zapytania
-            criteriaQuery.select(rootTable);
-
-            // specification
-            list.addAll(session.createQuery(criteriaQuery).list());
-
-            // poznanie uniwersalnego rozwiązania które działa z każdą bazą danych
-            // używanie klas których będziecie używać na JPA (Spring)
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return list;
-    }
-    public List<Student> findByLastName(String lastName){
-        List<Student> list = new ArrayList<>();
+    public <T extends LastNameSearchable> List<T> findByLastName(Class<T> classType,String lastName){
+        List<T> list = new ArrayList<>();
 
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         try(Session session = sessionFactory.openSession()){
@@ -124,11 +111,11 @@ public class StudentDao {
             CriteriaBuilder cb = session.getCriteriaBuilder();
 
             //obiekt reprezentujący zapytanie
-            CriteriaQuery<Student> criteriaQuery = cb.createQuery(Student.class);
+            CriteriaQuery<T> criteriaQuery = cb.createQuery(classType);
 
             //obiekt reprezentujący tabelę bazodanową
             //do jakiej tabeli kierujemy nasze zapytanie?
-            Root<Student> rootTable = criteriaQuery.from(Student.class);
+            Root<T> rootTable = criteriaQuery.from(classType);
 
             //wykonanie zapytania
             criteriaQuery.select(rootTable)
