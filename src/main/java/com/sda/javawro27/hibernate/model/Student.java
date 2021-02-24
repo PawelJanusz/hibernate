@@ -21,7 +21,7 @@ import java.util.Set;
     @Setter
     @EqualsAndHashCode
     @ToString
-    @RequiredArgsConstructor
+    @RequiredArgsConstructor // kontruktor z wymaganymi parametrami - wymagane pola to pola finalne
     @AllArgsConstructor
     public class Student implements LastNameSearchable{
 

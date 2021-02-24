@@ -86,10 +86,10 @@ public class Main {
 
 
         Optional<Student> studentOptional = daoS.findById(Student.class, idS);
-        if (studentOptional.isPresent()) {
-            Student student = studentOptional.get();                                // z bazy pobierz 1 obiekt relacji
+            if (studentOptional.isPresent()) {
+                Student student = studentOptional.get();                                // z bazy pobierz 1 obiekt relacji
 
-            Optional<Teacher> teacherOptional = daoT.findById(Teacher.class, idT);
+        Optional<Teacher> teacherOptional = daoT.findById(Teacher.class, idT);
             if (teacherOptional.isPresent()) {
                 Teacher teacher = teacherOptional.get();                            // z bazy pobierz 2 obiekt relacji
 

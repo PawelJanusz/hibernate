@@ -189,8 +189,10 @@ public class StudentDao {
             //wykonanie zapytania
             criteriaQuery.select(rootTable)
                     .where(
+                            cb.and(
                             cb.equal(rootTable.get("behaviour"), behaviour),
                             cb.equal(rootTable.get("alive"), alive ? 1 : 0) // zamiast true/false będzie 1/0
+                            )
                     );
             //specification
             list.addAll(session.createQuery(criteriaQuery).list());

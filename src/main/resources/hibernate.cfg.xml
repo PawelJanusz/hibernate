@@ -11,6 +11,7 @@
             <!--oddzielenie kolejnych parametrów znakiem &amp; -->
         </property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- powyższa linia służy do wskazania hibernatowi  sterownika bazy danych-->
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
@@ -21,7 +22,7 @@
         <!--create-drop - uruchom connector, stwĂłrz tabele i kolumny, a po zakoĹ„czeniu aplikacji dropuj wszystkiego -->
         <!--validate - weryfikuje poprawnoĹ›Ä‡ bazy -->
         <!--ustawienie definiuje czy hibernate ma sam stworzyć TABELE-->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property> <!--jesli nie chcę stracić danych to ustawiamy na update -->
         <property name="show_sql">true</property>
 
         <!--dopisnaie klas obsługiwanych przez hibernate-->
