@@ -65,7 +65,8 @@ import java.util.Set;
 
         // Formula oznacza nam pole jako NIE-KOLUMNE i obliczenie wartości tego pola musi być zawarte w "value"
         @Formula(value = "(select avg(grade.gradeValue) from grade where grade.studentRef_id = id)")
-        private Double average; // liczymy średnią z 0 liczb = N/A
+        private Double average; // przy typie złożonym "Double" liczymy także średnią z 0 liczb = N/A;
+                                //przy typie prostym "double" przy ilości liczb: 0 - będzie exception
 
         // nie może istnieć relacja EAGER z Listą więcej niż jeden raz w modelu
 

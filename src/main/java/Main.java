@@ -57,7 +57,7 @@ public class Main {
         }while (!komenda.equalsIgnoreCase("quit"));
     }
 
-    public static void findByLastName(Scanner scanner){
+    private static void findByLastName(Scanner scanner){
         System.out.println("Podaj parametry: nazwisko");
         String last = scanner.nextLine();
 
