@@ -166,7 +166,7 @@ public class Main {
                     "    MATEMATYKA,\n" +
                     "    INFORMATYKA]");
             String linia = scanner.nextLine();
-            double gValue = Double.valueOf(linia.split(" ")[0]);
+            double gValue = Double.parseDouble(linia.split(" ")[0]);
             GradeSubject subject = GradeSubject.valueOf(linia.split(" ")[1].toUpperCase());
 
             // tworzymy ocenę

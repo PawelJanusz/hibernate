@@ -20,7 +20,7 @@ import java.util.Optional;
 
 // umożliwa wykonywanie operacji  CRUD na modelu Student
 //            GradeDao
-//            GenericDao
+//            EntityDao
 
 public class StudentDao {
 //metoda zamieniona na generyczną w klasie EntityDao
