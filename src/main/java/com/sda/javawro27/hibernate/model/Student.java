@@ -79,6 +79,15 @@ import java.util.Set;
         @EqualsAndHashCode.Exclude
         @ToString.Exclude // powstrzymanie przed rekurencyjnym zapętleniem
         private Set<Teacher> teacherSet;
+
+        public Student(String firstName, String lastName, double height, int age, boolean alive, Behaviour behaviour) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.height = height;
+            this.age = age;
+            this.alive = alive;
+            this.behaviour = behaviour;
+        }
     }
 
 

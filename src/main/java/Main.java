@@ -17,7 +17,7 @@ public class Main {
         String komenda;
         do{
             // https://pl.spoj.com/
-            System.out.println("Podaj komendę [add/list/delete/update/byAge/addgrade/bybeh/addteacher/delteacher/quit]");
+            System.out.println("Podaj komendę [add/list/delete/update/byAge/addgrade/listgrade/delgrade/bybeh/addteacher/delteacher/quit]");
             komenda = scanner.nextLine();
 
             if(komenda.equalsIgnoreCase("add")){
