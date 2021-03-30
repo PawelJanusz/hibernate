@@ -43,8 +43,9 @@ public class StudentController {
 
 
     public void listStudents(){
+        EntityDao<Student> dao = new EntityDao<>();
         System.out.println("Lista studentów");
-        new StudentDao().getAll().stream()
+        dao.findAll(Student.class)
                 .forEach(System.out::println);
     }
 
@@ -134,12 +135,12 @@ public class StudentController {
         dao.findByBehaviourAndAlive(behaviour, alive).forEach(System.out::println);
     }
 
-    public void deleteStudent(StudentDao dao, Scanner scanner) {
+    public void deleteStudent(EntityDao<Student> dao, Scanner scanner) {
         // nie da się usunąć rekordu po id (bezpośrednio z sesji)
         System.out.println("Podaj parametry: Identyfikator");
         Long id = Long.valueOf(scanner.nextLine());
 
-        Optional<Student> studentOptional = dao.findById(id);   // szukamy studenta
+        Optional<Student> studentOptional = dao.findById(Student.class, id);   // szukamy studenta
         if(studentOptional.isPresent()) {                       // jeśli uda się go odnaleźć
             Student student = studentOptional.get();            // wyciągamy studenta z Optional (Box, opakowanie)
             dao.delete(student);                                // przekazujemy do usunięcia

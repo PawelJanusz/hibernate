@@ -40,58 +40,6 @@ public class StudentDao {
         }
         return list;
     }
-//
-//    public void saveOrUpdate(Student student) {
-//        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-//        //transakcja musi się wykonać w całości
-//        Transaction transaction = null;
-//
-//        try (Session session = sessionFactory.openSession()) {
-//            // rozpoczecie transakcji
-//            transaction = session.beginTransaction();
-//
-//            // instrukcja która służy do zapisywania w bazie
-//            session.saveOrUpdate(student);
-//
-//            // zatwierdzenie transakcji
-//            transaction.commit();
-//        } catch (HibernateException he) {
-//            if (transaction != null) {
-//                transaction.rollback(); // cofnięcie transakcji, jesli coś pójdzie nie tak
-//            }
-//        }
-//    }
-
-
-    public Optional<Student> findById(Long id){
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-
-        try (Session session = sessionFactory.openSession()) {
-            // istnieje prawdopodobieństwo, że rekord nie zostanie odnaleziony
-            return Optional.ofNullable(session.get(Student.class, id));
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    public void delete(Student student){
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-        Transaction transaction = null;
-
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-
-            // instrukcja która służy do usuwania w bazie
-            session.delete(student);
-            transaction.commit();
-
-        } catch (HibernateException he) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-    }
 
     // inna opcja
     // ##############################################################################################
