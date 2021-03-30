@@ -8,48 +8,127 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        mainMenu();
+
+    }
+    private static Scanner scanner = new Scanner(System.in);
+    private static String command;
+
+    private static void mainMenu(){
+        do {
+            System.out.println("Choose option number or option: \n" +
+                    "1.Student \n" +
+                    "2.Teacher \n" +
+                    "3.Grade \n" +
+                    "Quit");
+            command = scanner.nextLine();
+            if (command.equals("1")){
+                studentMenu();
+            }
+            if (command.equals("2")){
+                teacherMenu();
+            }
+            if (command.equals("3")){
+                gradeMenu();
+            }
+        }while (!command.equalsIgnoreCase("quit"));
+    }
+
+    private static void studentMenu(){
         StudentController student = new StudentController();
-        TeacherController teacher = new TeacherController();
-        GradeController grade = new GradeController();
+        StudentDao studentDao = new StudentDao();
 
-        Scanner scanner = new Scanner(System.in);
-
-        String komenda;
-        do{
-            // https://pl.spoj.com/
-            System.out.println("Podaj komendę [add/list/delete/update/byAge/addgrade/listgrade/delgrade/bybeh/addteacher/delteacher/quit]");
-            komenda = scanner.nextLine();
-
-            if(komenda.equalsIgnoreCase("add")){
+        do {
+            System.out.println("Choose option number or option: \n" +
+                    "STUDENT \n" +
+                    "1.Add \n" +
+                    "2.List \n" +
+                    "3.List students of teacher \n" +
+                    "4.Update \n" +
+                    "5.Delete \n" +
+                    "6.Find by age \n" +
+                    "7.Find by behaviour and alive \n" +
+                    "8.Find by last name \n" +
+                    "Back \n" +
+                    "Quit");
+            command = scanner.nextLine();
+            if (command.equals("1")){
                 student.addStudents(scanner);
-            }else if(komenda.equalsIgnoreCase("list")){
+            }
+            if (command.equals("2")){
                 student.listStudents();
-            }else if(komenda.equalsIgnoreCase("delete")){
-                student.deleteStudent(scanner);
-            }else if(komenda.equalsIgnoreCase("update")){
+            }
+            if (command.equals("3")){
+                student.listStudentsOfTeacher(scanner);
+            }
+            if (command.equals("4")){
                 student.updateStudent(scanner);
-            }else if(komenda.equalsIgnoreCase("byAge")){
-                student.findByAge(new StudentDao(), scanner);
-            }else if (komenda.equalsIgnoreCase("bybeh")){
-                student.findByBehaviourAndAlive(new StudentDao(), scanner);
-            }else if (komenda.equalsIgnoreCase("addgrade")) {
-                grade.addGradeToStudent(scanner);
-            }else if (komenda.equalsIgnoreCase("delgrade")) {
-                grade.delGrade(scanner);
-            }else if (komenda.equalsIgnoreCase("listgrades")) {
-                grade.listStudentGrades(scanner);
-            }else if (komenda.equalsIgnoreCase("changegrade")){
-                // todo: zrobić później, można edytować przedmiot i wartość,
-                // żeby zaobserwować zachowanie @UpdateTimeStamp
-            }else if(komenda.equalsIgnoreCase("addteacher")){
-                teacher.addTeacher(scanner);
-            }else if (komenda.equalsIgnoreCase("connectteacher")){
-                teacher.connectTeacher(scanner);
-            }else if (komenda.equalsIgnoreCase("liststudents")){
-                student.listStudents(scanner); // możliwość pobrania studentów wybranego nauczyciela
-            }else if (komenda.equalsIgnoreCase("bylastname")){
+            }
+            if (command.equals("5")){
+                student.deleteStudent(scanner);
+            }
+            if (command.equals("6")){
+                student.findByAge(studentDao, scanner);
+            }
+            if (command.equals("7")){
+                student.findByBehaviourAndAlive(studentDao, scanner);
+            }
+            if (command.equals("8")){
                 student.findByLastName(scanner);
             }
-        }while (!komenda.equalsIgnoreCase("quit"));
+            if (command.equalsIgnoreCase("back")){
+                mainMenu();
+            }
+        }while (!command.equalsIgnoreCase("quit"));
+    }
+
+    private static void gradeMenu(){
+        GradeController grade = new GradeController();
+
+        do {
+            System.out.println("Choose option number or option: \n" +
+                    "GRADE \n" +
+                    "1.Add grade to student\n" +
+                    "2.List student grades\n" +
+                    "3.Delete grade \n" +
+                    "Back \n" +
+                    "Quit");
+            command = scanner.nextLine();
+            if (command.equals("1")){
+                grade.addGradeToStudent(scanner);
+            }
+            if (command.equals("2")){
+                grade.listStudentGrades(scanner);
+            }
+            if (command.equals("3")){
+                grade.delGrade(scanner);
+            }
+            if (command.equalsIgnoreCase("back")){
+                mainMenu();
+            }
+        }while (!command.equalsIgnoreCase("quit"));
+    }
+
+    private static void teacherMenu(){
+        TeacherController teacher = new TeacherController();
+
+        do {
+            System.out.println("Choose option number or option: \n" +
+                    "TEACHER \n" +
+                    "1.Add \n" +
+                    "2.Connect teacher and student\n" +
+                    "Back \n" +
+                    "Quit");
+            command = scanner.nextLine();
+            if (command.equals("1")){
+                teacher.addTeacher(scanner);
+            }
+            if (command.equals("2")){
+                teacher.connectTeacher(scanner);
+            }
+            if (command.equalsIgnoreCase("back")){
+                mainMenu();
+            }
+        }while (!command.equalsIgnoreCase("quit"));
     }
 }

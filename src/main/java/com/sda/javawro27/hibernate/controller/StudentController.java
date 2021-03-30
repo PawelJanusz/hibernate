@@ -33,7 +33,7 @@ public class StudentController {
         dao.saveOrUpdate(student);
     }
     //read
-    public void listStudents(Scanner scanner){
+    public void listStudentsOfTeacher(Scanner scanner){
         System.out.println("Podaj parametry: Identyfikator nauczyciela");
         Long idT = Long.valueOf(scanner.nextLine());
 
