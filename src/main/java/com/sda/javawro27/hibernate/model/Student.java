@@ -88,6 +88,16 @@ import java.util.Set;
             this.alive = alive;
             this.behaviour = behaviour;
         }
+
+        public Student(String firstName, String lastName, double height, int age, boolean alive, Behaviour behaviour, Set<Grade> gradeList) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.height = height;
+            this.age = age;
+            this.alive = alive;
+            this.behaviour = behaviour;
+            this.gradeList = gradeList;
+        }
     }
 
 

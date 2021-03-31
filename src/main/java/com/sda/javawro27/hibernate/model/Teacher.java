@@ -40,4 +40,10 @@ public class Teacher implements LastNameSearchable{
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Teacher(String firstName, String lastName, Date birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
 }

@@ -23,31 +23,6 @@ import java.util.Optional;
 //            EntityDao
 
 public class StudentDao {
-//metoda zamieniona na generyczną w klasie EntityDao
-
-    public List<Student> getAll(){
-        List<Student> list = new ArrayList<>();
-
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-
-        try (Session session = sessionFactory.openSession()) {
-            // h q l = hibernate query language
-            Query<Student> studentQuery = session.createQuery("SELECT a from Student a", Student.class);
-            list.addAll(studentQuery.getResultList());
-
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-        return list;
-    }
-
-    // inna opcja
-    // ##############################################################################################
-    // ##############################################################################################
-    // ##############################################################################################
-    // ##############################################################################################
-    // ##############################################################################################
-
 
     public <T extends LastNameSearchable> List<T> findByLastName(Class<T> classType,String lastName){
         List<T> list = new ArrayList<>();
@@ -154,5 +129,21 @@ public class StudentDao {
         return list;
     }
 
+
+    public List<Student> getAll(){
+        List<Student> list = new ArrayList<>();
+
+        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            // h q l = hibernate query language
+            Query<Student> studentQuery = session.createQuery("SELECT a from Student a", Student.class);
+            list.addAll(studentQuery.getResultList());
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return list;
+    }
 
 }
