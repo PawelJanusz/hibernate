@@ -3,7 +3,6 @@ package com.sda.javawro27.hibernate.dao;
 import com.sda.javawro27.hibernate.model.Behaviour;
 import com.sda.javawro27.hibernate.model.Grade;
 import com.sda.javawro27.hibernate.model.Student;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
