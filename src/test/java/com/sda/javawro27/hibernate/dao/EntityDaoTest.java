@@ -1,9 +1,11 @@
 package com.sda.javawro27.hibernate.dao;
 
 import com.sda.javawro27.hibernate.model.*;
+import org.hibernate.HibernateException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -66,4 +68,13 @@ class EntityDaoTest {
         assertNotEquals(list1, list2);
     }
 
+    @Test
+    void returnOptionalEmpty(){
+        //given
+        EntityDao<Student> dao = new EntityDao<>();
+        //when
+        Optional<Student> optionalStudent = dao.findById(Student.class, 500L);
+        //then
+        assertSame(Optional.empty(), optionalStudent);
+    }
 }
