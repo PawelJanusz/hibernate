@@ -35,15 +35,14 @@ public class Teacher implements LastNameSearchable{
         this.lastName = lastName;
     }
 
-    public Teacher(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     public Teacher(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String getLastName() {
+        return this.lastName;
     }
 }

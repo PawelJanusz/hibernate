@@ -98,6 +98,11 @@ import java.util.Set;
             this.behaviour = behaviour;
             this.gradeList = gradeList;
         }
+
+        @Override
+        public String getLastName() {
+            return this.lastName;
+        }
     }
 
 
