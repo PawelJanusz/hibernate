@@ -1,7 +1,6 @@
 package com.sda.javawro27.hibernate.dao;
 
 import com.sda.javawro27.hibernate.model.*;
-import org.hibernate.HibernateException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -3,17 +3,28 @@ package com.sda.javawro27.hibernate.dao;
 import com.sda.javawro27.hibernate.model.Behaviour;
 import com.sda.javawro27.hibernate.model.Grade;
 import com.sda.javawro27.hibernate.model.Student;
+import org.hibernate.annotations.Source;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.*;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDaoTest {
 
-    private StudentDao studentDao = new StudentDao();
-    private EntityDao<Student> entityDao = new EntityDao<>();
+    private StudentDao studentDao;
+    private EntityDao<Student> entityDao;
 
+    @BeforeEach
+    void initializedStudentAndEntityDao(){
+        studentDao = new StudentDao();
+        entityDao = new EntityDao<>();
+    }
 
     @Test
     void findByAgeBetweenReturnListWithStudents(){
