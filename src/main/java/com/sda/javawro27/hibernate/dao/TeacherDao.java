@@ -12,8 +12,10 @@ import java.util.Set;
 
 public class TeacherDao {
 
+    private Set<Student> students = new HashSet<>();
+
+
     public Set<Student> findStudents(Long identifier){
-        Set<Student> students = new HashSet<>();
 
         SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         try(Session session = sessionFactory.openSession()){
@@ -28,6 +30,10 @@ public class TeacherDao {
             ex.printStackTrace();
         }
         return students;
+    }
+
+    public void clean(){
+        students.clear();
     }
 
 }
