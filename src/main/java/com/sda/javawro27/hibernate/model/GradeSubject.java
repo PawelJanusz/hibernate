@@ -5,5 +5,7 @@ public enum GradeSubject {
     J_POLSKI,
     J_ANGIELSKI,
     MATEMATYKA,
-    INFORMATYKA
+    INFORMATYKA;
+
+
 }

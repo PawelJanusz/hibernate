@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EntityDaoTest {
@@ -75,5 +76,15 @@ class EntityDaoTest {
         Optional<Student> optionalStudent = dao.findById(Student.class, 500L);
         //then
         assertSame(Optional.empty(), optionalStudent);
+    }
+
+    @Test
+    void returnNotEmptyOptional(){
+        //given
+        EntityDao<Student> dao = new EntityDao<>();
+        //when
+        Optional<Student> optionalStudent = dao.findById(Student.class, 5L);
+        //then
+        assertThat(optionalStudent, not(Optional.empty()));
     }
 }
