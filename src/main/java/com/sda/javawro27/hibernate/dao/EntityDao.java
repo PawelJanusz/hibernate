@@ -15,8 +15,10 @@ import java.util.Optional;
 
 public class EntityDao<T> {
 
+    private final SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+
+
     public void saveOrUpdate(T entity) {
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         Transaction transaction = null;
 
         try (Session session = sessionFactory.openSession()) {
@@ -32,8 +34,6 @@ public class EntityDao<T> {
     }
 
     public Optional<T> findById(Class<T> classType, Long id){
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
-
         try (Session session = sessionFactory.openSession()) {
             // istnieje prawdopodobieństwo, że rekord nie zostanie odnaleziony
             return Optional.ofNullable(session.get(classType, id));
@@ -44,7 +44,6 @@ public class EntityDao<T> {
     }
 
     public void delete(T entity){
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         Transaction transaction = null;
 
         try (Session session = sessionFactory.openSession()) {
@@ -62,7 +61,6 @@ public class EntityDao<T> {
 
     public List<T> findAll(Class<T> classType){
         List<T> list = new ArrayList<>();
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
 
         try (Session session = sessionFactory.openSession()) {
             // narzędzie do tworzenia zapytań i kreowania klauzuli 'where'

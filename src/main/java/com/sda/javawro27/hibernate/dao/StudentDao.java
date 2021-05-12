@@ -24,10 +24,11 @@ import java.util.Optional;
 
 public class StudentDao {
 
+    private final SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
+
     public <T extends LastNameSearchable> List<T> findByLastName(Class<T> classType,String lastName){
         List<T> list = new ArrayList<>();
 
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         try(Session session = sessionFactory.openSession()){
 
             // narzędzie do tworzenia zapytań i kreowania klauzuli 'where'
@@ -62,7 +63,6 @@ public class StudentDao {
     public List<Student> findByAgeBetween(int ageFrom, int ageTo){
         List<Student> list = new ArrayList<>();
 
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         try(Session session = sessionFactory.openSession()){
 
             // narzędzie do tworzenia zapytań i kreowania klauzuli 'where'
@@ -96,7 +96,6 @@ public class StudentDao {
     public List<Student> findByBehaviourAndAlive(Behaviour behaviour, boolean alive){
         List<Student> list = new ArrayList<>();
 
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
         try(Session session = sessionFactory.openSession()){
 
             // narzędzie do tworzenia zapytań i kreowania klauzuli 'where'
@@ -132,8 +131,6 @@ public class StudentDao {
 
     public List<Student> getAll(){
         List<Student> list = new ArrayList<>();
-
-        SessionFactory sessionFactory = HibernateUtil.getOurSessionFactory();
 
         try (Session session = sessionFactory.openSession()) {
             // h q l = hibernate query language

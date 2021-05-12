@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class TeacherDao {
 
-    private Set<Student> students = new HashSet<>();
+    private final Set<Student> students = new HashSet<>();
 
 
     public Set<Student> findStudents(Long identifier){
