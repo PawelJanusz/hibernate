@@ -30,7 +30,7 @@ import java.util.Set;
         private Long id;
         // identity - identyfikator pochodzi z bazy danych
 
-        // sequence - licznik identyfikatorów pochodzi z hibernate, wszystkie klasy posiadają wspólny licznik
+        // sequence - licznik identyfikatorów pochodzi z hibernate, wszystkie encje posiadają wspólny licznik
         // STUDENT 1 2 5 7 8
         // GRADE 3 4 6 9
 

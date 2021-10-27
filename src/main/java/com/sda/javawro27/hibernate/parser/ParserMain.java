@@ -1,5 +1,9 @@
 package com.sda.javawro27.hibernate.parser;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ParserMain {
 
     public static void main(String[] args) {
@@ -18,5 +22,8 @@ public class ParserMain {
         char[] signs = parser.toCharArray();
 
         System.out.println(signs);
+
+
+
     }
 }
